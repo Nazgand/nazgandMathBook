@@ -23,7 +23,7 @@
     <lemma xml:id="lemma-wisp-upper-bound">
       <statement>
         <p>Wave integral supremum points establish upper bounds.</p>
-        <me>\Bqty{a,b}\subset wisp \Rightarrow \int_a^b \operatorname{mdfz}\pqty{t}\pqty{\pdiff{t}{}\operatorname{pw}\pqty{t}}\,dt \leq 0</me>
+        <me>\bqty{\Bqty{a,b}\subset wisp \land b>a} \Rightarrow \int_a^b \operatorname{mdfz}\pqty{t}\pqty{\pdiff{t}{}\operatorname{pw}\pqty{t}}\,dt \leq 0</me>
       </statement>
       <proof>
       </proof>
@@ -31,7 +31,7 @@
     <lemma xml:id="lemma-wiip-lower-bound">
       <statement>
         <p>Wave integral supremum points establish upper bounds.</p>
-        <me>\Bqty{a,b}\subset wiip \Rightarrow \int_a^b \operatorname{mdfz}\pqty{t}\pqty{\pdiff{t}{}\operatorname{pw}\pqty{t}}\,dt \geq 0</me>
+        <me>\bqty{\Bqty{a,b}\subset wiip \land b>a} \Rightarrow \int_a^b \operatorname{mdfz}\pqty{t}\pqty{\pdiff{t}{}\operatorname{pw}\pqty{t}}\,dt \geq 0</me>
       </statement>
       <proof>
       </proof>
