@@ -1,0 +1,1 @@
+I decided to make this because of how nice the knowls are in PreTeXt HTML. Unfortunately, the HTML book is not properly viewable offline.
