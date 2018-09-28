@@ -3,6 +3,7 @@
   <title>Integrals of pseudo-wave multiple of monovariant decreasing nonnegative functions.</title>
   <introduction>
     <p>This chapter is inspired by the integral <m>\int_0^\infty \frac{\sin\pqty{x}}{x}\,dx</m>.</p>
+    <me>x\in\mathbb{R}^+\Rightarrow\operatorname{mdfz}\pqty{x}\in\mathbb{R}</me>
     <me>0=\lim_{x\to\infty}\operatorname{mdfz}\pqty{x}\geq\pdiff{t}{}\operatorname{mdfz}\pqty{t}</me>
   </introduction>
   <section xml:id="section-proof-of-convergence">
@@ -37,7 +38,7 @@
     </lemma>
     <lemma xml:id="lemma-upper-lower-bounds-squeeze">
       <statement>
-        <p>The integral converges because the upper and lower bounds become arbitrarily close.</p>
+        <p>For <m>a\in\mathbb{R}^+</m>, the integral <m>\int_a^\infty \operatorname{mdfz}\pqty{t}\pqty{\pdiff{t}{}\operatorname{pw}\pqty{t}}\,dt</m> converges because the upper and lower bounds become arbitrarily close.</p>
       </statement>
       <proof>
       </proof>
