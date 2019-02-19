@@ -1,0 +1,37 @@
+\documentclass[]{article}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsmath}
+%opening
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\gd}{gd}
+\DeclareMathOperator{\gs}{gs}
+
+\title{Gravity Towards a Sphere}
+\author{Nazgand}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Where the sphere has a radius of 1 and a volume density of 1, and the point has a mass of 1, let \(gs\left(d\right)\) be the force of gravity the point mass feels toward the sphere when at distance \(d\) from the center of the sphere. Newtonian gravity is used with the gravitational constant set to 1.
+\end{abstract}
+
+\section{Discs}
+The point mass is located perpendicular to the disk at distance \(d\in\mathbb{R}^+\). The disk has radius \(r\in\mathbb{R}^+\) and an area density of 1.
+\[\frac{\partial \gd\left(r,d\right)}{\partial r}=\frac{2\pi*r*d}{\left(d^2+r^2\right)^{3/2}}\land \gd\left(0,d\right)=0\]
+\[\therefore \gd\left(r,d\right)=2\pi\left(1-\frac{d}{\sqrt{d^2+r^2}}\right)\]
+\[c\in\mathbb{R}^+\Rightarrow \gd\left(r,d\right)=\gd\left(c*r,c*d\right)\]
+A quick rationality check shows all is well:
+\[\lim_{c\rightarrow\infty}\gd\left(\frac{1}{c},d\right)c^2=\frac{\pi}{d^2}\]
+Interestingly, the gravity towards an infinite plane is finite, showing promise for fiction with worlds of infinite surface area.
+\[\lim_{r\rightarrow\infty}\gd\left(r,d\right)=2\pi\]
+In such an infinite flat world, the downwards acceleration of gravity would be the same at all elevations, with the caveat that imperfections like mountains and the air above would pull objects below upwards.
+\section{Spheres}
+Building from the previous section,
+\[\gs\left(r,d\right)=\int_{-r}^{r}\gd\left(\sqrt{r^2-a^2},\left|d+a\right|\right)\sgn\left(d+a\right)\partial a\]
+\[d\geq r\Rightarrow\gs\left(r,d\right)=\frac{4\pi r^3}{3d^2}\]
+\[d\leq r\Rightarrow\gs\left(r,d\right)=\frac{4\pi d}{3}\]
+The second case shows that a hollow ball will have no gravitational effect on anything within it.
+\end{document}
