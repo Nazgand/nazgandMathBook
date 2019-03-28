@@ -316,7 +316,7 @@
 	\exp\pqty{\frac{3a}{2}}=
 	2 \abs{\cos\pqty{\pqty{a+bi}\sin\pqty{\frac{2\pi}{3}}}}
 	\end{equation}
-	Use \eqref{cos exp bound lemma}:
+	Use lemma \eqref{cos exp bound lemma}:
 	\begin{equation}
 	\exp\pqty{\frac{3a}{2}} \leq
 	2 {\exp\pqty{\abs{b}\sin\pqty{\frac{2\pi}{3}}}}
@@ -328,8 +328,57 @@
 	The last inequality carves out a sector of the complex plane where zeroes are not allowed. The symmetric properties of \(\es_3\) restrict zeroes to appearing near the conjectured region.
 	
 	
-	\subsection{Bounds on Complex Zeroes \(\es_n\)}
-	TODO
+	\subsection{Non-Rigorous Bounds on Complex Zeroes \(\es_n, n\geq 3\)}
+	A bound which supports this conjecture is attainable from \eqref{Es trig sum form 1}.
+	\begin{equation}
+	\es_n\pqty{x}
+	=
+	\frac{1}{n}\pqty{
+		e^x+e^{-x}\frac{1+\cos\pqty{\pi n}}{2} 
+		+2\sum _{k=1}^{\lceil n/2\rceil-1}e^{x\cos\pqty{\frac{2k\pi}{n}}} \cos\pqty{x\sin\pqty{\frac{2k\pi}{n}}}
+	}
+	\end{equation}
+	Note \(\es_n\pqty{x}\) has the same zeroes as \(\es_n\pqty{x}\exp\pqty{-x\cos\pqty{\frac{2\pi}{n}}}\), and most terms go to zero as \(\Re\pqty{x}\to\infty\).
+	\begin{equation}
+	\es_n\pqty{x}\exp\pqty{-x\cos\pqty{\frac{2\pi}{n}}}
+	\approx\mathcal{O}\pqty{
+	\frac{1}{n}\pqty{
+		e^{x\pqty{1-\cos\pqty{\frac{2\pi}{n}}}}
+		+2 \cos\pqty{x\sin\pqty{\frac{2\pi}{n}}}}
+	}
+	\end{equation}
+	Zeroes of \(\es_n\pqty{x}\) with large real parts are approximately bound by this equation:
+	\begin{equation}
+		0=
+		e^{x\pqty{1-\cos\pqty{\frac{2\pi}{n}}}}
+		+2 \cos\pqty{x\sin\pqty{\frac{2\pi}{n}}}
+	\end{equation}
+	\begin{equation}
+	-
+	e^{\pqty{a+b*i}\pqty{1-\cos\pqty{\frac{2\pi}{n}}}}=
+	2 \cos\pqty{\pqty{a+b*i}\sin\pqty{\frac{2\pi}{n}}}
+	\end{equation}
+	Absolute value:
+	\begin{equation}
+	\exp\pqty{a\pqty{1-\cos\pqty{\frac{2\pi}{n}}}}=
+	2 \abs{\cos\pqty{\pqty{a+b*i}\sin\pqty{\frac{2\pi}{n}}}}
+	\end{equation}
+	Use lemma \eqref{cos exp bound lemma}:
+	\begin{equation}
+	\exp\pqty{a\pqty{1-\cos\pqty{\frac{2\pi}{n}}}}\leq
+	2 \exp\pqty{\abs{b}\sin\pqty{\frac{2\pi}{n}}}
+	\end{equation}
+	Logarithm:
+	\begin{equation}
+	{a\pqty{1-\cos\pqty{\frac{2\pi}{n}}}}\leq
+	\ln\pqty{2} + {\abs{b}\sin\pqty{\frac{2\pi}{n}}}
+	\end{equation}
+	Equation form with slope:
+	\begin{equation}
+	{a\leq
+	\frac{\ln\pqty{2}}{{1-\cos\pqty{\frac{2\pi}{n}}}}} + {\abs{b}\cot\pqty{\frac{\pi}{n}}}
+	\end{equation}
+	The last inequality carves out a sector of the complex plane where zeroes are not allowed. The symmetric properties of \(\es_n\) restrict zeroes to appearing near the conjectured region.
 	
 	\section{Riemann Liouville Operator}
 	TODO
