@@ -38,6 +38,9 @@
 
 \numberwithin{equation}{section}
 
+\usepackage{xr}
+\externaldocument{TaylorSeries}
+
 %\usepackage{minted}
 %opening
 \author{Mark Andrew Gerads: nazgand@gmail.com}
@@ -81,7 +84,7 @@
 	\cos\pqty{\alpha+\beta}=\cos\pqty{\alpha}\cos\pqty{\beta}-\sin\pqty{\alpha}\sin\pqty{\beta}
 	\end{equation}
 	
-	\section{Calculus}
+	\section{Derivatives}
 	\begin{theorem}
 	\begin{equation}
 	\pdiff{x}{}\sin\pqty{x}=\cos\pqty{x}
@@ -148,6 +151,7 @@
 	
 	\begin{theorem}
 		\begin{equation}
+		\label{key}
 		\pdiff{x}{}\cos\pqty{x}=-\sin\pqty{x}
 		\end{equation}
 		\begin{proof}
@@ -172,6 +176,51 @@
 			\pdiff{x}{}\cos\pqty{x}=
 			-\sin\pqty{x}
 			\end{equation}
+		\end{proof}
+	\end{theorem}
+
+	\section{Taylor Series}
+	\begin{theorem}
+		\begin{equation}
+		\sin\pqty{x}=\sum_{k=0}^{\infty} \frac{\pqty{-1}^kx^{2k+1}}{\pqty{2k+1}!}
+		\end{equation}
+		\begin{proof}
+			The multiple derivatives cycle through 4 functions. Let \(n\in\mathbb{Z}\):
+			\begin{equation}
+				\pdiff{x}{4n}\sin\pqty{x}=\sin\pqty{x}
+			\end{equation}
+			\begin{equation}
+				\pdiff{x}{4n+1}\sin\pqty{x}=\cos\pqty{x}
+			\end{equation}
+			\begin{equation}
+				\pdiff{x}{4n+2}\sin\pqty{x}=-\sin\pqty{x}
+			\end{equation}
+			\begin{equation}
+				\pdiff{x}{4n+3}\sin\pqty{x}=-\cos\pqty{x}
+			\end{equation}
+			The derivatives at 0 thus cycle through \(0,1,0,-1\). Use [TaylorSeries\eqref{TaylorSeriesDef}] and simplify out the zeroes.
+		\end{proof}
+	\end{theorem}
+
+	\begin{theorem}
+		\begin{equation}
+		\cos\pqty{x}=\sum_{k=0}^{\infty} \frac{\pqty{-1}^kx^{2k}}{\pqty{2k}!}
+		\end{equation}
+		\begin{proof}
+			The multiple derivatives cycle through 4 functions. Let \(n\in\mathbb{Z}\):
+			\begin{equation}
+			\pdiff{x}{4n}\sin\pqty{x}=\cos\pqty{x}
+			\end{equation}
+			\begin{equation}
+			\pdiff{x}{4n+1}\sin\pqty{x}=-\sin\pqty{x}
+			\end{equation}
+			\begin{equation}
+			\pdiff{x}{4n+2}\sin\pqty{x}=-\cos\pqty{x}
+			\end{equation}
+			\begin{equation}
+			\pdiff{x}{4n+3}\sin\pqty{x}=\sin\pqty{x}
+			\end{equation}
+			The derivatives at 0 thus cycle through \(1,0,-1,0\). Use [TaylorSeries\eqref{TaylorSeriesDef}] and simplify out the zeroes.
 		\end{proof}
 	\end{theorem}
 \end{document}
