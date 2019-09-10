@@ -41,51 +41,6 @@
 		The goal of this paper is to analyze a class of functions which are equal to their own \(n\)th derivative. Disclaimer: this is a draft.
 	\end{abstract}
 	
-	\section{Notation}
-	Have you ever been frustrated when unsure whether French or Polish notation is used with combinations? I have been frustrated. Ever seen notation without even knowing how to look the notation up? Such problems are mitigated in this section.
-	
-	\(n\)th derivative, not to be confused with \(f^{n}\pqty{x}\):
-	\begin{equation}
-	f^{(n)}\pqty{x}
-	=
-	\pdiff{x}{n}f\pqty{x}
-	\end{equation}
-	
-	Positive integers:
-	\begin{equation}
-	\mathbb{Z}^+=\left\{n\in\mathbb{Z}\mid n>0\right\}
-	\end{equation}
-	
-	Positive reals:
-	\begin{equation}
-	\mathbb{R}^+=\left\{r\in\mathbb{R}\mid r>0\right\}
-	\end{equation}
-	
-	Laplace transform:
-	\begin{equation}
-	\laplace{f\pqty{t}}=
-	\int_{t=0}^{\infty}f\pqty{t}e^{-st}\,dt
-	\end{equation}
-	
-	Laplace transform inverse:
-	\begin{equation}
-	\laplaceInv{\laplace{f\pqty{t}}}=f\pqty{t}
-	\end{equation}
-	
-	Modular arithmetic function, $\md:\pqty{\mathbb{C},\mathbb{C}}\rightarrow\mathbb{C}$
-	\begin{equation}
-	0\leq\Re\pqty{\frac{\md\pqty{a,b}}{b}}<1
-	\land
-	\md\pqty{a,b}=\md\pqty{a+b,b}
-	\end{equation}
-	
-	Kronecker delta function:
-	\begin{equation}
-	\delta\pqty{0}=1
-	\land
-	\bqty{x\neq 0 \Rightarrow \delta\pqty{x}=0}
-	\end{equation}
-	
 	\section{Exponential Sum Definition}
 	For the fundamental definition where \(n\in\mathbb{Z}^+\), define:
 	\begin{equation}
@@ -267,10 +222,14 @@
 	
 	Moreover, for $n>1$,
 	\begin{equation}
-	\es_n^{(m)}z=z^{\md\pqty{-m,n}}\prod_{k=1}^{\infty}\pqty{1+\pqty{\frac{z}{\ez\pqty{n,m,k}}}^n}
+	\es_n^{(m)}\pqty{z}=z^{\md\pqty{-m,n}}\prod_{k=1}^{\infty}\pqty{1+\pqty{\frac{z}{\ez\pqty{n,m,k}}}^n}
 	\end{equation}
 	
 	This conjecture is easily verifiable for $\pqty{n,m}\in\Bqty{\pqty{2,0}, \pqty{2,1}, \pqty{4,0}}$.
+	
+	Work has been done in German to show this works for \(\es_n\pqty{z}\).
+	
+	\url{https://math.stackexchange.com/questions/3221569/conjecture-all-complex-roots-of-sum-k-0-infty-fraczk-leftnk-right}
 	
 	\subsection{Bounds on Complex Zeroes \(\es_3\)}
 	Lemma
