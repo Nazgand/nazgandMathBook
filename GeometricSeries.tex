@@ -1,0 +1,76 @@
+\documentclass[]{article}
+%made from template named MathArticleTemplate
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage{graphics}
+
+%Fix \eqref in section title
+\pdfstringdefDisableCommands{\def\eqref#1{(\ref{#1})}}
+
+\DeclareMathOperator{\es}{Es}
+\DeclareMathOperator{\ez}{Ez}
+\DeclareMathOperator{\gs}{gs}
+\DeclareMathOperator{\md}{mod}
+\DeclareMathOperator{\pow}{Pow}
+%Parenthesis, Braces, Brackets usepackage{physics}
+\newcommand{\pqty}[1]{{\left(#1\right)}}
+\newcommand{\Bqty}[1]{{\left\{#1\right\}}}
+\newcommand{\bqty}[1]{{\left[#1\right]}}
+\newcommand{\abs}[1]{{\left\lvert#1\right\rvert}}
+%other stuff
+\newcommand{\floor}[1]{{\left\lfloor#1\right\rfloor}}
+\newcommand{\ceil}[1]{{\left\lceil#1\right\rceil}}
+%Laplace transform and inverse
+\newcommand{\laplace}[1]{\mathcal{L}\Bqty{#1}\pqty{s}}
+\newcommand{\laplaceInv}[1]{\mathcal{L}^{-1}\Bqty{#1}\pqty{t}}
+%Derivatives
+\newcommand{\pdiff}[2]{\frac{\partial^{#2}}{\partial #1^{#2}}}
+
+%lemma,theorem, proof
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\numberwithin{equation}{section}
+
+\usepackage{xr}
+
+%\usepackage{minted}
+%opening
+\author{Mark Andrew Gerads: nazgand@gmail.com}
+
+\title{Geometric Series}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{abstract}
+		The goal of this paper is to review Geometric Series.
+	\end{abstract}
+	
+	Consider
+	\begin{equation}
+		b*\pqty{\sum_{k=a}^{n} b^k}
+		=\pqty{\sum_{k=a}^{n} b^k}-b^a+b^{n+1}
+	\end{equation}
+	Rearranging:
+	\begin{equation}
+	\pqty{\sum_{k=a}^{n} b^k}
+	=\frac{b^a+b^{n+1}}{1-b}
+	\end{equation}
+	Note if \(\abs{b}<1\) then as \(n\to\infty, b^{n+1}\to 0\)
+	\begin{equation}
+	\label{GeometricSeries}
+	\abs{b}<1\Rightarrow
+	\pqty{\sum_{k=a}^{\infty} b^k}
+	=\frac{b^a}{1-b}
+	\end{equation}
+	Note if \(\abs{b}>1\) then as \(n\to\infty, \abs{b^{n+1}}\to \infty\) resulting in a diverging series.
+
+\end{document}

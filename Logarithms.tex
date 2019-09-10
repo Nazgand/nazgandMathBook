@@ -1,0 +1,184 @@
+\documentclass[]{article}
+%made from template named MathArticleTemplate
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage{graphics}
+
+%Fix \eqref in section title
+\pdfstringdefDisableCommands{\def\eqref#1{(\ref{#1})}}
+
+\DeclareMathOperator{\es}{Es}
+\DeclareMathOperator{\ez}{Ez}
+\DeclareMathOperator{\gs}{gs}
+\DeclareMathOperator{\md}{mod}
+\DeclareMathOperator{\pow}{Pow}
+%Parenthesis, Braces, Brackets usepackage{physics}
+\newcommand{\pqty}[1]{{\left(#1\right)}}
+\newcommand{\Bqty}[1]{{\left\{#1\right\}}}
+\newcommand{\bqty}[1]{{\left[#1\right]}}
+\newcommand{\abs}[1]{{\left\lvert#1\right\rvert}}
+%other stuff
+\newcommand{\floor}[1]{{\left\lfloor#1\right\rfloor}}
+\newcommand{\ceil}[1]{{\left\lceil#1\right\rceil}}
+%Laplace transform and inverse
+\newcommand{\laplace}[1]{\mathcal{L}\Bqty{#1}\pqty{s}}
+\newcommand{\laplaceInv}[1]{\mathcal{L}^{-1}\Bqty{#1}\pqty{t}}
+%Derivatives
+\newcommand{\pdiff}[2]{\frac{\partial^{#2}}{\partial #1^{#2}}}
+
+%lemma,theorem, proof
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\numberwithin{equation}{section}
+
+\usepackage{xr}
+\externaldocument{Differentiation}
+\externaldocument{ExponentialFunction}
+
+%\usepackage{minted}
+%opening
+\author{Mark Andrew Gerads: nazgand@gmail.com}
+
+\title{Logarithms}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{abstract}
+		The goal of this paper is to examine the logarithm functions.
+	\end{abstract}
+	
+	\section{Logarithms}
+	\begin{definition}
+		The logarithm functions are the inverse functions of the exponentiation functions:
+		\begin{equation}
+			\label{LogarithmDefinition}
+			b^{\log_b\pqty{x}}=x
+			,
+			\log_b\pqty{b^x}=x
+		\end{equation}
+		\begin{equation}
+		\log_e\pqty{x}=\ln\pqty{x}
+		\end{equation}
+	\end{definition}
+
+	\begin{theorem}[Power rule]
+		\begin{equation}
+		\log_b\pqty{x^p}=p*\log_b\pqty{x}
+		\end{equation}
+		\begin{proof}
+			Start with \eqref{LogarithmDefinition}:
+			\begin{equation}
+			b^{\log_b\pqty{x}}=x
+			\end{equation}
+			Raise both sides to the power of \(p\):
+			\begin{equation}
+			b^{p*\log_b\pqty{x}}=x^p
+			\end{equation}
+			Apply the \(\log_b\) function to both sides:
+			\begin{equation}
+			p*\log_b\pqty{x}=\log_b\pqty{x^p}
+			\end{equation}
+		\end{proof}
+	\end{theorem}
+
+	\begin{theorem}[Product sum rule]
+		\begin{equation}
+		\log_b\pqty{x*y}=\log_b\pqty{x}+\log_b\pqty{y}
+		\end{equation}
+		\begin{proof}
+			Use \eqref{LogarithmDefinition}
+			\begin{equation}
+			\log_b\pqty{x*y}=
+			\log_b\pqty{b^{\log_b\pqty{x}}*b^{\log_b\pqty{x}}}
+			\end{equation}
+			Use the additive property of exponential functions
+			\begin{equation}
+			\log_b\pqty{x*y}=
+			\log_b\pqty{b^{\log_b\pqty{x}+\log_b\pqty{x}}}
+			\end{equation}
+			Use \eqref{LogarithmDefinition}
+			\begin{equation}
+			\log_b\pqty{x*y}=
+			\log_b\pqty{x}+\log_b\pqty{x}
+			\end{equation}
+		\end{proof}
+	\end{theorem}
+
+	\begin{theorem}[Change of base]
+		\begin{equation}
+			\log_b\pqty{x}=\frac{\log_k\pqty{x}}{\log_k\pqty{b}}
+		\end{equation}
+		\begin{proof}
+			Start with \eqref{LogarithmDefinition}:
+			\begin{equation}
+				b^{\log_b\pqty{x}}=x
+			\end{equation}
+			Apply the \(\log_k\) function to both sides:
+			\begin{equation}
+				\log_k\pqty{b^{\log_b\pqty{x}}}=\log_k\pqty{x}
+			\end{equation}
+			\begin{equation}
+				\log_b\pqty{x}\log_k\pqty{b}=\log_k\pqty{x}
+			\end{equation}
+			Divide both sides by \(\log_k\pqty{b}\)
+		\end{proof}
+	\end{theorem}
+
+	\begin{theorem}[Integral form]
+		\begin{equation}
+		\label{LnIntegralForm}
+		\ln\pqty{z}=\int_{1}^{z}\frac{1}{x}\partial x
+		\end{equation}
+	\begin{proof}
+		Proof from \url{https://math.stackexchange.com/questions/1341958/proof-of-the-derivative-of-lnx/1341995#1341995}.
+		
+		The derivative of the logarithm functions exist because the exponential functions have derivatives.
+		\url{https://en.wikipedia.org/wiki/Inverse_function_theorem}
+		\begin{equation}
+		\pdiff{x}{}x=1
+		\end{equation}
+		Substitute \eqref{LogarithmDefinition}:
+		\begin{equation}
+		\pdiff{x}{}e^{\ln\pqty{x}}=1
+		\end{equation}
+		The chain rule [Differentiation\eqref{DiffChainRule}]
+		\begin{equation}
+		\pqty{\pdiff{z}{}e^{z}:z\to \ln\pqty{x}}\pdiff{x}{}{\ln\pqty{x}}=1
+		\end{equation}
+		The derivative of the natural exponential function is itself: [ExponentialFunction\eqref{expOwnDeriv}]
+		\begin{equation}
+		\pqty{e^{z}:z\to \ln\pqty{x}}\pdiff{x}{}{\ln\pqty{x}}=1
+		\end{equation}
+		Substitute:
+		\begin{equation}
+		e^{\ln\pqty{x}}\pdiff{x}{}{\ln\pqty{x}}=1
+		\end{equation}
+		Simplify:
+		\begin{equation}
+		x\pdiff{x}{}{\ln\pqty{x}}=1
+		\end{equation}
+		Divide:
+		\begin{equation}
+		\pdiff{x}{}{\ln\pqty{x}}=\frac{1}{x}
+		\end{equation}
+		Integrate:
+		\begin{equation}
+		\ln\pqty{z}={\ln\pqty{z}-\ln\pqty{1}}=\int_{1}^{z}\frac{1}{x}\partial x
+		\end{equation}
+		
+	\end{proof}
+	\end{theorem}
+
+
+	
+	
+	\url{https://en.wikipedia.org/wiki/Logarithm}
+\end{document}
