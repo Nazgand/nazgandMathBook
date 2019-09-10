@@ -1,0 +1,177 @@
+\documentclass[]{article}
+%made from template named MathArticleTemplate
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage{graphics}
+
+%Fix \eqref in section title
+\pdfstringdefDisableCommands{\def\eqref#1{(\ref{#1})}}
+
+\DeclareMathOperator{\es}{Es}
+\DeclareMathOperator{\ez}{Ez}
+\DeclareMathOperator{\gs}{gs}
+\DeclareMathOperator{\md}{mod}
+\DeclareMathOperator{\pow}{Pow}
+%Parenthesis, Braces, Brackets usepackage{physics}
+\newcommand{\pqty}[1]{{\left(#1\right)}}
+\newcommand{\Bqty}[1]{{\left\{#1\right\}}}
+\newcommand{\bqty}[1]{{\left[#1\right]}}
+\newcommand{\abs}[1]{{\left\lvert#1\right\rvert}}
+%other stuff
+\newcommand{\floor}[1]{{\left\lfloor#1\right\rfloor}}
+\newcommand{\ceil}[1]{{\left\lceil#1\right\rceil}}
+%Laplace transform and inverse
+\newcommand{\laplace}[1]{\mathcal{L}\Bqty{#1}\pqty{s}}
+\newcommand{\laplaceInv}[1]{\mathcal{L}^{-1}\Bqty{#1}\pqty{t}}
+%Derivatives
+\newcommand{\pdiff}[2]{\frac{\partial^{#2}}{\partial #1^{#2}}}
+
+%lemma,theorem, proof
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\numberwithin{equation}{section}
+
+%\usepackage{minted}
+%opening
+\author{Mark Andrew Gerads: nazgand@gmail.com}
+
+\title{Trigonometry}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{abstract}
+		The goal of this paper is to review trigonometry.
+	\end{abstract}
+	
+	\section{Geometric Foundations}
+	In [Elementary Geometry and Trigonometry.kig] by moving the angle control point to the second quadrant and comparing, we can see
+	\begin{equation}
+	\label{SinCosPhaseShift}
+	\sin\pqty{\theta+\frac{\pi}{2}}=\pqty{\cos\pqty{\theta}}
+	,
+	\cos\pqty{\theta+\frac{\pi}{2}}=-\pqty{\sin\pqty{\theta}}
+	\end{equation}
+	Moreover, we see as \(\theta\to 0\)
+	\begin{equation}
+	\label{SinXOverXLimit}
+	\lim\limits_{\theta\to 0}\frac{\sin\pqty{\theta}}{\theta}=0
+	\end{equation}
+	Comparing with [PythagoreanTheorem.png], we find
+	\begin{equation}
+	\label{SinCosPythagoras}
+	1=\sin\pqty{\theta}^2+\cos\pqty{\theta}^2
+	\end{equation}
+	From [SumOfAnglesSinCos.kig], we get
+	\begin{equation}
+		\label{SinSumOfAngle}
+		\sin\pqty{\alpha+\beta}=\sin\pqty{\alpha}\cos\pqty{\beta}+\cos\pqty{\alpha}\sin\pqty{\beta}
+	\end{equation}
+	And
+	\begin{equation}
+	\label{CosSumOfAngle}
+	\cos\pqty{\alpha+\beta}=\cos\pqty{\alpha}\cos\pqty{\beta}-\sin\pqty{\alpha}\sin\pqty{\beta}
+	\end{equation}
+	
+	\section{Calculus}
+	\begin{theorem}
+	\begin{equation}
+	\pdiff{x}{}\sin\pqty{x}=\cos\pqty{x}
+	\end{equation}
+	\begin{proof}
+		\begin{equation}
+			\pdiff{x}{}\sin\pqty{x}=
+			\lim\limits_{h\to 0}\frac{\sin\pqty{x+h}-\sin\pqty{x}}{h}
+		\end{equation}
+		Use \eqref{SinSumOfAngle}
+		\begin{equation}
+		\pdiff{x}{}\sin\pqty{x}=
+		\lim\limits_{h\to 0}\frac{\sin\pqty{x}\cos\pqty{h}+\cos\pqty{x}\sin\pqty{h}-\sin\pqty{x}}{h}
+		\end{equation}
+		Split the limit:
+		\begin{equation}
+		\pdiff{x}{}\sin\pqty{x}=
+		\lim\limits_{h\to 0}\frac{\cos\pqty{x}\sin\pqty{h}}{h}
+		+
+		\lim\limits_{h\to 0}\frac{\sin\pqty{x}\pqty{\cos\pqty{h}-1}}{h}
+		\end{equation}
+		Simplify
+		\begin{equation}
+		\pdiff{x}{}\sin\pqty{x}=
+		\cos\pqty{x}\lim\limits_{h\to 0}\frac{\sin\pqty{h}}{h}
+		+
+		\sin\pqty{x}\lim\limits_{h\to 0}\frac{{\cos\pqty{h}-1}}{h}
+		\end{equation}
+		Use \eqref{SinXOverXLimit} on left limit and multiply right limit by \(\frac{\cos\pqty{h}+1}{\cos\pqty{h}+1}\)
+		\begin{equation}
+		\pdiff{x}{}\sin\pqty{x}=
+		\cos\pqty{x}
+		+
+		\sin\pqty{x}\lim\limits_{h\to 0}\frac{{\cos\pqty{h}^2-1}}{h\pqty{\cos\pqty{h}+1}}
+		\end{equation}
+		Use \eqref{SinCosPythagoras}
+		\begin{equation}
+		\pdiff{x}{}\sin\pqty{x}=
+		\cos\pqty{x}
+		+
+		\sin\pqty{x}\lim\limits_{h\to 0}\frac{{\sin\pqty{h}^2}}{h\pqty{\cos\pqty{h}+1}}
+		\end{equation}
+		Split the limit:
+		\begin{equation}
+		\pdiff{x}{}\sin\pqty{x}=
+		\cos\pqty{x}
+		+
+		\sin\pqty{x}\lim\limits_{a\to 0}\frac{{\sin\pqty{a}}}{h}
+		\lim\limits_{b\to 0}{{\sin\pqty{b}}}
+		\lim\limits_{c\to 0}\frac{1}{\pqty{\cos\pqty{c}+1}}
+		\end{equation}
+		Evaluate using \eqref{SinXOverXLimit} again
+		\begin{equation}
+		\pdiff{x}{}\sin\pqty{x}=
+		\cos\pqty{x}
+		+
+		1
+		*0
+		*\frac{1}{2}=
+		\cos\pqty{x}
+		\end{equation}
+	\end{proof}
+	\end{theorem}
+	
+	\begin{theorem}
+		\begin{equation}
+		\pdiff{x}{}\cos\pqty{x}=-\sin\pqty{x}
+		\end{equation}
+		\begin{proof}
+			Use \eqref{SinCosPhaseShift}
+			\begin{equation}
+			\pdiff{x}{}\cos\pqty{x}=\pdiff{x}{}\sin\pqty{x+\frac{\pi}{2}}
+			\end{equation}
+			Use the chain rule:
+			\begin{equation}
+			\pdiff{x}{}\cos\pqty{x}=
+			\pqty{\pdiff{z}{}\sin\pqty{z}:z\to x+\frac{\pi}{2}}
+			\pdiff{x}{}\pqty{x+\frac{\pi}{2}}
+			\end{equation}
+			Simplify
+			\begin{equation}
+			\pdiff{x}{}\cos\pqty{x}=
+			\cos\pqty{x+\frac{\pi}{2}}
+			\end{equation}
+			Use 
+			Use \eqref{SinCosPhaseShift}
+			\begin{equation}
+			\pdiff{x}{}\cos\pqty{x}=
+			-\sin\pqty{x}
+			\end{equation}
+		\end{proof}
+	\end{theorem}
+\end{document}
