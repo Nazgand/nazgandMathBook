@@ -41,6 +41,7 @@
 \usepackage{xr}
 \externaldocument{GeometricSeries}
 \externaldocument{Logarithms}
+\externaldocument{Trigonometry}
 
 %\usepackage{minted}
 %opening
@@ -327,8 +328,18 @@
 		\end{equation}
 	\end{proof}
 	
-	
-	
+	\section{Euler's Identity}
+	\begin{theorem}
+		\begin{equation}
+		e^{ix}=\cos\pqty{x}+i\sin\pqty{x}
+		\end{equation}
+	\end{theorem}
+	\begin{proof}
+		\begin{equation}
+			\pdiff{x}{n}e^{ix}=i^ne^{ix}
+		\end{equation}
+		The derivatives at 0 thus cycle through \(1,i,-1,-i\). Use [TaylorSeries\eqref{TaylorSeriesDef}] and compare to [Trigonometry\eqref{SinTaylor}] and [Trigonometry\eqref{CosTaylor}]
+	\end{proof}
 	
 	\section{Bibliography}
 	\url{https://en.wikipedia.org/wiki/Exponential_function}
