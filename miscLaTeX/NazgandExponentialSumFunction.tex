@@ -1,7 +1,8 @@
 \documentclass[]{article}
-%made from template named MathArticle
+%made from template named MathArticleTemplate
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true}
@@ -14,6 +15,7 @@
 \DeclareMathOperator{\ez}{Ez}
 \DeclareMathOperator{\gs}{gs}
 \DeclareMathOperator{\md}{mod}
+\DeclareMathOperator{\pow}{Pow}
 %Parenthesis, Braces, Brackets usepackage{physics}
 \newcommand{\pqty}[1]{{\left(#1\right)}}
 \newcommand{\Bqty}[1]{{\left\{#1\right\}}}
@@ -28,17 +30,26 @@
 %Derivatives
 \newcommand{\pdiff}[2]{\frac{\partial^{#2}}{\partial #1^{#2}}}
 
+%lemma,theorem, proof
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\numberwithin{equation}{section}
+
 %\usepackage{minted}
 %opening
+\author{Mark Andrew Gerads: nazgand@gmail.com}
+
 \title{Exponential Sum Function related to Generalized Split-complex numbers}
-\author{Nazgand: nazgand@gmail.com}
 
 \begin{document}
 	
 	\maketitle
 	
 	\begin{abstract}
-		The goal of this paper is to analyze a class of functions which are equal to their own \(n\)th derivative. Disclaimer: this is a draft.
+		The goal of this paper is to analyze a class of functions which are equal to their own \(n\)th derivative.
 	\end{abstract}
 	
 	\section{Exponential Sum Definition}
@@ -50,50 +61,57 @@
 	\end{equation}
 	
 	\section{Laplace inverse transform form}
-	\begin{equation}
-	\es_n\pqty{t}=
-	\laplaceInv{\frac{s^{n-1}}{s^n-1}}
-	\end{equation}
-	
-	Equivalence is shown using the General derivative rule for Laplace transforms:
-	\begin{equation}
-	\label{Laplace General Derivatives}
-	\laplace{f^{(n)}\pqty{t}}=
-	s^n \laplace{f\pqty{t}} - \sum_{k=1}^{n} s^{n-k} f^{(k-1)}\pqty{0^{+}}
-	\end{equation}
-	
-	Substitute \(f\) with \(\es_n^{(k)}\) in \eqref{Laplace General Derivatives}, use the derivatives provided by \eqref{Es fundamenta definition} to simplify noting \(\md\pqty{-m,n}=\md\pqty{k-1,n}\) is the only surviving summand:
-	\begin{equation}
-	\laplace{\es_n^{(m)}\pqty{t}}=
-	\laplace{\es_n^{(m+n)}\pqty{t}}=
-	s^n\laplace{\es_n^{(m)}\pqty{t}}-s^{\md\pqty{m-1,n}}
-	\end{equation}
-	
-	Solve:
-	\begin{equation}
-	\laplace{\es_n^{(m)}\pqty{t}}=
-	\frac{s^{\md\pqty{m-1,n}}}{s^n-1}
-	\end{equation}
+	\begin{theorem}
+			\begin{equation}
+		\es_n\pqty{t}=
+		\laplaceInv{\frac{s^{n-1}}{s^n-1}}
+		\end{equation}
+	\end{theorem}
+	\begin{proof}
+			Equivalence is shown using the General derivative rule for Laplace transforms:
+		\begin{equation}
+		\label{Laplace General Derivatives}
+		\laplace{f^{(n)}\pqty{t}}=
+		s^n \laplace{f\pqty{t}} - \sum_{k=1}^{n} s^{n-k} f^{(k-1)}\pqty{0^{+}}
+		\end{equation}
+		
+		Substitute \(f\) with \(\es_n^{(k)}\) in \eqref{Laplace General Derivatives}, use the derivatives provided by \eqref{Es fundamenta definition} to simplify noting \(\md\pqty{-m,n}=\md\pqty{k-1,n}\) is the only surviving summand:
+		\begin{equation}
+		\laplace{\es_n^{(m)}\pqty{t}}=
+		\laplace{\es_n^{(m+n)}\pqty{t}}=
+		s^n\laplace{\es_n^{(m)}\pqty{t}}-s^{\md\pqty{m-1,n}}
+		\end{equation}
+		
+		Solve:
+		\begin{equation}
+		\laplace{\es_n^{(m)}\pqty{t}}=
+		\frac{s^{\md\pqty{m-1,n}}}{s^n-1}
+		\end{equation}
+	\end{proof}
 	
 	
 	
 	\section{As a sum of exponential functions}
 	The reason this function is named $\es$ is because it is an Exponential Sum function.
-	\begin{equation}
-	\label{Es Exponential sum form}
-	\es_n\pqty{x}=
-	\frac{1}{n}\sum _{k=1}^n \exp\pqty{xe^{2ki\pi/n}}
-	\end{equation}
-	Proof of equivalence to \eqref{Es fundamenta definition} via Taylor series:
-	\begin{equation}
-	\sum _{k=1}^n \exp\pqty{xe^{2ki\pi/n}}
-	=
-	\sum _{k=1}^n \sum _{j=0}^\infty e^{2jki\pi/n}\frac{x^j}{j!}
-	=
-	\sum _{j=0}^\infty \frac{x^j}{j!} \sum _{k=1}^n e^{2jki\pi/n}
-	=
-	\sum_{m=0}^{\infty}\frac{nx^{nm}}{\pqty{nm}!}
-	\end{equation}
+	\begin{theorem}
+		\begin{equation}
+		\label{Es Exponential sum form}
+		\es_n\pqty{x}=
+		\frac{1}{n}\sum _{k=1}^n \exp\pqty{xe^{2ki\pi/n}}
+		\end{equation}
+	\end{theorem}
+	\begin{proof}
+		Proof of equivalence to \eqref{Es fundamenta definition} via Taylor series:
+		\begin{equation}
+		\sum _{k=1}^n \exp\pqty{xe^{2ki\pi/n}}
+		=
+		\sum _{k=1}^n \sum _{j=0}^\infty e^{2jki\pi/n}\frac{x^j}{j!}
+		=
+		\sum _{j=0}^\infty \frac{x^j}{j!} \sum _{k=1}^n e^{2jki\pi/n}
+		=
+		\sum_{m=0}^{\infty}\frac{nx^{nm}}{\pqty{nm}!}
+		\end{equation}
+	\end{proof}
 	
 	
 	\section{Real formulae derived from \eqref{Es Exponential sum form}}
@@ -148,59 +166,63 @@
 	\sum_{k=1}^{n}\sum_{j=1}^{m}\es_n^{(k)}\pqty{x\exp\pqty{\frac{2 i \pi j}{m}}}
 	\end{equation}
 	
-	Argument sum rule:
-	\begin{equation}
-	e^{x+y}=\sum_{k=0}^{n-1}\sum_{j=0}^{n-1}\es_n^{(k)}\pqty{x}\es_n^{(j)}\pqty{y}
-	\end{equation}
-	
-	\begin{equation}
-	\es_n\pqty{x+y}=
-	\frac{1}{n}\sum _{l=1}^n \sum_{k=0}^{n-1}\sum_{j=0}^{n-1}
-	\es_n^{(k)}\pqty{x\exp\pqty{\frac{2 i \pi  l}{n}}}
-	\es_n^{(j)}\pqty{y\exp\pqty{\frac{2 i \pi  l}{n}}}
-	\end{equation}
-	
-	\begin{equation}
-	\es_n\pqty{x+y}=
-	\frac{1}{n}\sum _{l=1}^n \sum_{k=0}^{n-1}\sum_{j=0}^{n-1}
-	\es_n^{(k)}\pqty{x}
-	\es_n^{(j)}\pqty{y}
-	\exp\pqty{\frac{-2(j+k) i \pi  l}{n}}
-	\end{equation}
-	
-	The \(l\) index cancels out all the terms where \(j+k\neq 0\), so:
-	\begin{equation}
-	\es_n\pqty{x+y}=
-	\sum_{k=0}^{n-1}
-	\es_n^{(k)}\pqty{x}
-	\es_n^{(n-k)}\pqty{y}
-	\end{equation}
-	
-	Differentiation:
-	\begin{equation}
-	\es_n^{(m)}\pqty{x+y}=
-	\sum_{k=0}^{n-1}
-	\es_n^{(m+k)}\pqty{x}
-	\es_n^{(n-k)}\pqty{y}
-	\end{equation}
+	\begin{theorem}[Argument sum rule]
+		\begin{equation}
+		\label{EsArgSumRule}
+		\es_n\pqty{x+y}=
+		\sum_{k=0}^{n-1}
+		\es_n^{(k)}\pqty{x}
+		\es_n^{(n-k)}\pqty{y}
+		\end{equation}
+	\end{theorem}
+	\begin{proof}
+		\begin{equation}
+		e^{x+y}=\sum_{k=0}^{n-1}\sum_{j=0}^{n-1}\es_n^{(k)}\pqty{x}\es_n^{(j)}\pqty{y}
+		\end{equation}
+		
+		\begin{equation}
+		\es_n\pqty{x+y}=
+		\frac{1}{n}\sum _{l=1}^n \sum_{k=0}^{n-1}\sum_{j=0}^{n-1}
+		\es_n^{(k)}\pqty{x\exp\pqty{\frac{2 i \pi  l}{n}}}
+		\es_n^{(j)}\pqty{y\exp\pqty{\frac{2 i \pi  l}{n}}}
+		\end{equation}
+		
+		\begin{equation}
+		\es_n\pqty{x+y}=
+		\frac{1}{n}\sum _{l=1}^n \sum_{k=0}^{n-1}\sum_{j=0}^{n-1}
+		\es_n^{(k)}\pqty{x}
+		\es_n^{(j)}\pqty{y}
+		\exp\pqty{\frac{-2(j+k) i \pi  l}{n}}
+		\end{equation}
+		
+		The \(l\) index cancels out all the terms where \(j+k\neq 0\).
+	\end{proof}
 
-	Substituting $x=-y$ produces the equations analogous to $\sin\pqty{x}^2 + \cos\pqty{x}^2=1$.
-	\begin{equation}
-	1=
-	\sum_{k=0}^{n-1}
-	\es_n^{(k)}\pqty{x}
-	\es_n^{(n-k)}\pqty{-x}
-	\end{equation}
-	
-	More generally:
-	\begin{equation}
-	\delta\pqty{\md\pqty{m,n}}=
-	\sum_{k=0}^{n-1}
-	\es_n^{(m+k)}\pqty{x}
-	\es_n^{(n-k)}\pqty{-x}
-	\end{equation}
-	
-	
+	\begin{corollary}
+		\begin{equation}
+			\label{EsmArgSumRule}
+			\es_n^{(m)}\pqty{x+y}=
+			\sum_{k=0}^{n-1}
+			\es_n^{(m+k)}\pqty{x}
+			\es_n^{(n-k)}\pqty{y}
+		\end{equation}
+	\end{corollary}
+	\begin{proof}
+		Differentiate \eqref{EsArgSumRule}
+	\end{proof}
+
+	\begin{corollary}
+		\begin{equation}
+		\delta\pqty{\md\pqty{m,n}}=
+		\sum_{k=0}^{n-1}
+		\es_n^{(m+k)}\pqty{x}
+		\es_n^{(n-k)}\pqty{-x}
+		\end{equation}
+	\end{corollary}
+	\begin{proof}
+		Substituting $x=-y$ in \eqref{EsmArgSumRule} produces the equations analogous to $\sin\pqty{x}^2 + \cos\pqty{x}^2=1$
+	\end{proof}
+
 	\section{Real and imaginary parts}
 	Using \eqref{Es Exponential sum form}
 	\begin{equation}
