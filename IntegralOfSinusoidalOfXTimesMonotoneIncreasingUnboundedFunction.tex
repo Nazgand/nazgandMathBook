@@ -1,0 +1,152 @@
+\documentclass[]{article}
+%made from template named MathArticleTemplate
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage{graphics}
+
+%Fix \eqref in section title
+\pdfstringdefDisableCommands{\def\eqref#1{(\ref{#1})}}
+
+\DeclareMathOperator{\es}{Es}
+\DeclareMathOperator{\ez}{Ez}
+\DeclareMathOperator{\gs}{gs}
+\DeclareMathOperator{\md}{mod}
+\DeclareMathOperator{\pow}{Pow}
+%Parenthesis, Braces, Brackets usepackage{physics}
+\newcommand{\pqty}[1]{{\left(#1\right)}}
+\newcommand{\Bqty}[1]{{\left\{#1\right\}}}
+\newcommand{\bqty}[1]{{\left[#1\right]}}
+\newcommand{\abs}[1]{{\left\lvert#1\right\rvert}}
+%other stuff
+\newcommand{\floor}[1]{{\left\lfloor#1\right\rfloor}}
+\newcommand{\ceil}[1]{{\left\lceil#1\right\rceil}}
+%Laplace transform and inverse
+\newcommand{\laplace}[1]{\mathcal{L}\Bqty{#1}\pqty{s}}
+\newcommand{\laplaceInv}[1]{\mathcal{L}^{-1}\Bqty{#1}\pqty{t}}
+%Derivatives
+\newcommand{\pdiff}[2]{\frac{\partial^{#2}}{\partial #1^{#2}}}
+
+%lemma,theorem, proof
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\numberwithin{equation}{section}
+
+%\usepackage{minted}
+%opening
+\author{Mark Andrew Gerads: nazgand@gmail.com}
+
+\title{\(\int_{0}^{\infty}\sin\pqty{x*f\pqty{x}}\partial x\) converges for positive monotone increasing unbounded \(f\pqty{x}\)}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{definition}
+		Let a speed function \(f:\mathbb{R}^+\to\mathbb{R}^+\) exist such that
+		\begin{equation}
+		\bqty{\Bqty{a,b}\subseteq\mathbb{R}^+\land a<b}
+		\Rightarrow
+		f\pqty{a}<f\pqty{b}
+		\end{equation}
+	\end{definition}
+
+	As \(f\pqty{x}\to\infty\), the period of \(\sin\pqty{x*f\pqty{x}}\) approaches zero, making the integral converge. More rigor below.
+	
+	\begin{lemma}[Discrete increases for \(f\) are enough for proof.]
+		\begin{equation}
+		\int_{0}^{\infty}\sin\pqty{x*f\pqty{x}}\partial x
+		=
+		\lim\limits_{n\to\infty}\int_{0}^{\infty}\sin\pqty{x*g_n\pqty{x}}\partial x
+		\end{equation}
+		where
+		\begin{equation}
+			g_n\pqty{x}=\frac{\floor{n*f\pqty{x}}}{n}
+		\end{equation}
+	\end{lemma}
+	\begin{proof}
+		Trivial.
+	\end{proof}
+
+	\begin{lemma}[More periods can be added so only 1 discontinuity need be considered at a time.]
+		\begin{equation}
+			\int_{0}^{\infty}\sin\pqty{x*f\pqty{x}}\partial x
+			=
+			\int_{0}^{\infty}\sin\pqty{x*g\pqty{x}}\partial x
+		\end{equation}
+		where \(y\in\mathbb{R}^+\) and
+		\begin{equation}
+			g\pqty{x}=
+			\begin{cases}
+				f\pqty{x} & \text{if } x<y\\
+				f\pqty{y} & \text{if } y\leq x<y+\frac{2\pi}{f\pqty{y}}\\
+				f\pqty{x-\frac{2\pi}{f\pqty{y}}} & \text{if } \frac{2\pi}{f\pqty{y}}\leq x
+			\end{cases}
+		\end{equation}
+	\end{lemma}
+	\begin{proof}
+		\(g\) modifies \(f\) by adding a sinusoidal period to \(\sin\pqty{x*g\pqty{x}}\) which integrates to \(0\).
+	\end{proof}
+
+
+	These 2 Lemmas allow consideration of a period with 1 increase of speed (\(f\pqty{x}\)) without loss of generality. Showing that 2 periods will not produce more area than 1 period allows, by induction, the entire integral to be bounded by the area 1 period can produce.
+	Let \(\sin\pqty{a*f\pqty{a}}=0\) be the start of a period. Let \(b\) be the point in the period where the speed increases to \(f\pqty{b}\). \(a<b<\frac{2\pi}{f\pqty{a}}\). The end of the period is \(c=b + \pqty{\frac{2\pi}{f\pqty{a}} + a - b}*\frac{f\pqty{a}}{f\pqty{b}}\). Let a further half period be at \(d=c+\frac{\pi}{f\pqty{b}}\).
+	\begin{equation}
+	f\pqty{x}=
+	\begin{cases}
+	f\pqty{x} & \text{if } x \leq a\\
+	f\pqty{a} & \text{if } a \leq x < b\\
+	f\pqty{b} & \text{if } b \leq x < d\\
+	f\pqty{x} & \text{if } d \leq x
+	\end{cases}
+	\end{equation}
+	The area of the period is thus:
+	\begin{equation}
+	A=
+	\int_{a}^{b}\sin\pqty{x*f\pqty{a}}\partial x+
+	\int_{b}^{c}\sin\pqty{x*f\pqty{b}}\partial x
+	\end{equation}
+	
+	\begin{theorem}
+		The maximum area the described period can have is \(\frac{2}{f\pqty{a}}\).
+	\end{theorem}
+	\begin{proof}
+		The way to maximize the area of 1 period is to have a constant speed until half a period passes and the integral becomes negative, then have infinite speed. \(b=a+\frac{\pi}{f\pqty{a}},c=b,f\pqty{b}=\infty\)
+		\begin{equation}
+		A \leq \int_{a}^{a+\frac{\pi}{f\pqty{a}}}\sin\pqty{x*f\pqty{a}}\partial x
+		+\int_{a+\frac{\pi}{f\pqty{a}}}^{a+\frac{\pi}{f\pqty{a}}}\sin\pqty{x*f\pqty{b}}\partial x
+		=\frac{2}{f\pqty{a}}
+		\end{equation}
+	\end{proof}
+	\begin{theorem}
+	The maximum area the described 2 periods can have is \(\frac{2}{f\pqty{a}}\).
+	\end{theorem}
+	\begin{proof}
+	The way to maximize the area of 2 periods is to have a constant speed until half a period passes, then have speed \(f\pqty{b}\) and the integral becomes negative, then have infinite speed at \(d\). \(b=a+\frac{\pi}{f\pqty{a}},c=b,f\pqty{d}=\infty\).
+	\begin{equation}
+	A \leq \int_{a}^{a+\frac{\pi}{f\pqty{a}}}\sin\pqty{x*f\pqty{a}}\partial x
+	+\int_{b}^{d}\sin\pqty{x*f\pqty{b}}\partial x
+	=\frac{2}{f\pqty{a}}
+	\end{equation}
+	Note \(\int_{b}^{d}\sin\pqty{x*f\pqty{b}}\partial x=0\).
+	\end{proof}
+	
+	We can now see that adding more periods simply delays the inevitable because \(\lim\limits_{x\to\infty}\frac{2}{f\pqty{x}}=0\). Thus \(\int_{0}^{\infty}\sin\pqty{x*f\pqty{x}}\partial x\) converges as was to be shown.
+
+	Bounds on the integral, where \(y\) may be any position in a period:
+	\begin{equation}
+	\frac{2}{f\pqty{y}}
+	\geq
+	\int_{y}^{\infty}\sin\pqty{x*f\pqty{x}}\partial x
+	\geq
+	-\frac{2}{f\pqty{y}}
+	\end{equation}
+	The lower bound can come from a symmetric argument with a period of \(-\sin\pqty{x}\) instead of \(\sin\pqty{x}\).
+
+\end{document}
