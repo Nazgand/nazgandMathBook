@@ -42,7 +42,7 @@
 %opening
 \author{Mark Andrew Gerads: nazgand@gmail.com}
 
-\title{\(\int_{0}^{\infty}\sin\pqty{x*f\pqty{x}}\partial x\) converges for positive monotone increasing unbounded \(f\pqty{x}\)}
+\title{\(\int_{0}^{\infty}\sin\pqty{xf\pqty{x}}\partial x\) converges for positive monotone increasing unbounded continuous \(f\pqty{x}\)}
 
 \begin{document}
 	
@@ -61,9 +61,9 @@
 	
 	\begin{lemma}[Discrete increases for \(f\) are enough for proof.]
 		\begin{equation}
-		\int_{0}^{\infty}\sin\pqty{x*f\pqty{x}}\partial x
+		\int_{0}^{\infty}\sin\pqty{xf\pqty{x}}\partial x
 		=
-		\lim\limits_{n\to\infty}\int_{0}^{\infty}\sin\pqty{x*g_n\pqty{x}}\partial x
+		\lim\limits_{n\to\infty}\int_{0}^{\infty}\sin\pqty{xg_n\pqty{x}}\partial x
 		\end{equation}
 		where
 		\begin{equation}
@@ -76,9 +76,9 @@
 
 	\begin{lemma}[More periods can be added so only 1 discontinuity need be considered at a time.]
 		\begin{equation}
-			\int_{0}^{\infty}\sin\pqty{x*f\pqty{x}}\partial x
+			\int_{0}^{\infty}\sin\pqty{xf\pqty{x}}\partial x
 			=
-			\int_{0}^{\infty}\sin\pqty{x*g\pqty{x}}\partial x
+			\int_{0}^{\infty}\sin\pqty{xg\pqty{x}}\partial x
 		\end{equation}
 		where \(y\in\mathbb{R}^+\) and
 		\begin{equation}
@@ -109,9 +109,11 @@
 	The area of the period is thus:
 	\begin{equation}
 	A=
-	\int_{a}^{b}\sin\pqty{x*f\pqty{a}}\partial x+
-	\int_{b}^{c}\sin\pqty{x*f\pqty{b}}\partial x
+	\int_{a}^{b}\sin\pqty{xf\pqty{a}}\partial x+
+	\int_{b}^{c}\sin\pqty{xf\pqty{b}}\partial x
 	\end{equation}
+	
+	Because \(f\pqty{x}\) is continuous, the changes of speed in the next 2 theorems is infinitesimal, and thus the phase shift is negligible.
 	
 	\begin{theorem}
 		The maximum area the described period can have is \(\frac{2}{f\pqty{a}}\).
@@ -119,8 +121,8 @@
 	\begin{proof}
 		The way to maximize the area of 1 period is to have a constant speed until half a period passes and the integral becomes negative, then have infinite speed. \(b=a+\frac{\pi}{f\pqty{a}},c=b,f\pqty{b}=\infty\)
 		\begin{equation}
-		A \leq \int_{a}^{a+\frac{\pi}{f\pqty{a}}}\sin\pqty{x*f\pqty{a}}\partial x
-		+\int_{a+\frac{\pi}{f\pqty{a}}}^{a+\frac{\pi}{f\pqty{a}}}\sin\pqty{x*f\pqty{b}}\partial x
+		A \leq \int_{a}^{a+\frac{\pi}{f\pqty{a}}}\sin\pqty{xf\pqty{a}}\partial x
+		+\int_{a+\frac{\pi}{f\pqty{a}}}^{a+\frac{\pi}{f\pqty{a}}}\sin\pqty{xf\pqty{b}}\partial x
 		=\frac{2}{f\pqty{a}}
 		\end{equation}
 	\end{proof}
@@ -130,8 +132,8 @@
 	\begin{proof}
 	The way to maximize the area of 2 periods is to have a constant speed until half a period passes, then have speed \(f\pqty{b}\) and the integral becomes negative, then have infinite speed at \(d\). \(b=a+\frac{\pi}{f\pqty{a}},c=b,f\pqty{d}=\infty\).
 	\begin{equation}
-	A \leq \int_{a}^{a+\frac{\pi}{f\pqty{a}}}\sin\pqty{x*f\pqty{a}}\partial x
-	+\int_{b}^{d}\sin\pqty{x*f\pqty{b}}\partial x
+	A \leq \int_{a}^{a+\frac{\pi}{f\pqty{a}}}\sin\pqty{xf\pqty{a}}\partial x
+	+\int_{b}^{d}\sin\pqty{xf\pqty{b}}\partial x
 	=\frac{2}{f\pqty{a}}
 	\end{equation}
 	Note \(\int_{b}^{d}\sin\pqty{x*f\pqty{b}}\partial x=0\).
@@ -143,7 +145,7 @@
 	\begin{equation}
 	\frac{2}{f\pqty{y}}
 	\geq
-	\int_{y}^{\infty}\sin\pqty{x*f\pqty{x}}\partial x
+	\int_{y}^{\infty}\sin\pqty{xf\pqty{x}}\partial x
 	\geq
 	-\frac{2}{f\pqty{y}}
 	\end{equation}
