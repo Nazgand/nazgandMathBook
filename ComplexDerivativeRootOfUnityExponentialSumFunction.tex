@@ -1,0 +1,87 @@
+\documentclass[]{article}
+%made from template named MathArticleTemplate
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage{graphics}
+
+%Fix \eqref in section title
+\pdfstringdefDisableCommands{\def\eqref#1{(\ref{#1})}}
+
+\DeclareMathOperator{\rues}{rues}
+\DeclareMathOperator{\cdrues}{cdrues}
+\DeclareMathOperator{\ez}{Ez}
+\DeclareMathOperator{\gs}{gs}
+\DeclareMathOperator{\md}{mod}
+\DeclareMathOperator{\pow}{Pow}
+%Parenthesis, Braces, Brackets usepackage{physics}
+\newcommand{\pqty}[1]{{\left(#1\right)}}
+\newcommand{\Bqty}[1]{{\left\{#1\right\}}}
+\newcommand{\bqty}[1]{{\left[#1\right]}}
+\newcommand{\abs}[1]{{\left\lvert#1\right\rvert}}
+%other stuff
+\newcommand{\floor}[1]{{\left\lfloor#1\right\rfloor}}
+\newcommand{\ceil}[1]{{\left\lceil#1\right\rceil}}
+%Laplace transform and inverse
+\newcommand{\laplace}[1]{\mathcal{L}\Bqty{#1}\pqty{s}}
+\newcommand{\laplaceInv}[1]{\mathcal{L}^{-1}\Bqty{#1}\pqty{t}}
+%Derivatives
+\newcommand{\pdiff}[2]{\frac{\partial^{#2}}{\partial #1^{#2}}}
+
+%lemma,theorem, proof
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\numberwithin{equation}{section}
+
+%\usepackage{minted}
+%opening
+\author{Mark Andrew Gerads: nazgand@gmail.com}
+
+\title{Complex Derivative Root of Unity Exponential Sum Function related to Generalized Split-complex numbers}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{abstract}
+		The goal of this paper is to analyze a class of functions which are equal to their own \(n\)th derivative. In particular, applying the derivative a complex number of times to these functions will be examined.
+	\end{abstract}
+	
+	\section{As a sum of exponential functions}
+	The reason this function is named $\rues$ is because it is a Complex Derivative Root of Unity Exponential Sum function.
+	\begin{definition}
+		Where $n\in\mathbb{Z}^+,\Bqty{d,x}\subset\mathbb{C}$:
+		\begin{equation}
+		\label{cdrues Exponential sum form}
+		\cdrues_n\pqty{d,x}=
+		\frac{1}{n}\sum _{k=1}^n \exp\pqty{xe^{2ki\pi/n}+2dki\pi/n}
+		\end{equation}
+	\end{definition}
+	Consider the $m$th derivative with respect to $x$. It is apparent that, for $m\in\mathbb{Z}^{\geq 0},d\in\mathbb{C}$:
+	\begin{equation}
+	\pdiff{x}{m}\cdrues_n\pqty{d,x}=\cdrues_n\pqty{d+m,x}
+	\end{equation}
+	We can thus extend the definition of iterated derivative to an arbitrary complex number of iterations, $m\in\mathbb{C}$:
+	\begin{equation}
+	\pdiff{x}{m}\cdrues_n\pqty{0,x}=\cdrues_n\pqty{m,x}
+	\end{equation}
+	The functions are periodic:
+	\begin{equation}
+	\cdrues_n\pqty{d,x}=\cdrues_n\pqty{d+n,x}
+	\end{equation}
+	
+	\section{Relation to earlier work}
+	Where \(n\in\mathbb{Z}^+\land x\in\mathbb{C}\):
+	\begin{equation}
+	\cdrues_n\pqty{0,x}=
+	\rues_n\pqty{x}=
+	\sum_{k=0}^{\infty}\frac{x^{nk}}{\pqty{nk}!}
+	\end{equation}
+
+\end{document}
