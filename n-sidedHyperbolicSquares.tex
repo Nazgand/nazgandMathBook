@@ -1,0 +1,112 @@
+\documentclass[]{article}
+%made from template named MathArticleTemplate
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage{graphics}
+
+%Fix \eqref in section title
+\pdfstringdefDisableCommands{\def\eqref#1{(\ref{#1})}}
+
+\DeclareMathOperator{\arcosh}{arcosh}
+%Parenthesis, Braces, Brackets usepackage{physics}
+\newcommand{\pqty}[1]{{\left(#1\right)}}
+\newcommand{\Bqty}[1]{{\left\{#1\right\}}}
+\newcommand{\bqty}[1]{{\left[#1\right]}}
+\newcommand{\abs}[1]{{\left\lvert#1\right\rvert}}
+%other stuff
+\newcommand{\floor}[1]{{\left\lfloor#1\right\rfloor}}
+\newcommand{\ceil}[1]{{\left\lceil#1\right\rceil}}
+%Laplace transform and inverse
+\newcommand{\laplace}[1]{\mathcal{L}\Bqty{#1}\pqty{s}}
+\newcommand{\laplaceInv}[1]{\mathcal{L}^{-1}\Bqty{#1}\pqty{t}}
+%Derivatives
+\newcommand{\pdiff}[2]{\frac{\partial^{#2}}{\partial #1^{#2}}}
+
+%lemma,theorem, proof
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\numberwithin{equation}{section}
+
+%\usepackage{minted}
+%opening
+\author{Mark Andrew Gerads: \href{MailTo:MarkAndrewGerads.Nazgand@Gmail.Com}{MarkAndrewGerads.Nazgand@Gmail.Com}}
+
+\title{
+	n-sided Hyperbolic Squares
+	
+	\href{https://github.com/Nazgand/nazgandMathBook}{https://github.com/Nazgand/nazgandMathBook}
+}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{abstract}
+		The goal of this paper is to analyze the properties (such as edge length, incircle radius, circumcircle radius) of an n-sided hyperbolic square, meaning a regular polygon with $n$ right angles. These polygons can tile the hyperbolic plane, which looks nice plotted with the Cartesian Hyperbolic Plane Metric.
+	\end{abstract}
+	
+	\section{Calculations}
+	Let the Gaussian curvature of the plane be $-1$.
+	
+	The regular polygon with $n$ right angles can be partitioned into $2n$ right triangles with angles $\frac{\pi}{n},\frac{\pi}{2},\frac{\pi}{4}$.
+	
+	The radius of the circumcircle is $\arcosh\pqty{\cot\pqty{\frac{\pi}{n}}\cot\pqty{\frac{\pi}{4}}}=\arcosh\pqty{\cot\pqty{\frac{\pi}{n}}}$.
+	
+	The radius of the incircle is
+	$\arcosh\pqty{\frac{\cos\pqty{\frac{\pi}{4}}}{\sin\pqty{\frac{\pi}{n}}}}$.
+	
+	The length of an edge is
+	$2\arcosh\pqty{\frac{\cos\pqty{\frac{\pi}{n}}}{\sin\pqty{\frac{\pi}{4}}}}$.
+	
+	The length of the perimeter is
+	$2n\arcosh\pqty{\frac{\cos\pqty{\frac{\pi}{n}}}{\sin\pqty{\frac{\pi}{4}}}}$.
+	
+	The area is
+	$2n\pqty{\pi-\frac{\pi}{n}-\frac{\pi}{2}-\frac{\pi}{4}}=
+	2\pi n\pqty{\frac{1}{4}-\frac{1}{n}}=
+	\frac{n\pi}{2}-2\pi$.
+	
+	\begin{table}[]
+		\begin{tabular}{|l|l|}
+			\hline
+			n  & radius of circumcircle                    \\ \hline
+			5  & 0.842482081462007459111380941149711215310 \\ \hline
+			6  & 1.14621583478058884390039365567400771581  \\ \hline
+			7  & 1.36005184973956765038539610902535387417  \\ \hline
+			8  & 1.52857091948099816127245618479367339329  \\ \hline
+			9  & 1.66893379511935191412136015769839107377  \\ \hline
+			10 & 1.78982041007171516740591260177484529866  \\ \hline
+			11 & 1.89630753915117229883786713543359764353  \\ \hline
+			12 & 1.99165239104943682406899667528592695415  \\ \hline
+			13 & 2.07808427065529112824674264723998571714  \\ \hline
+			14 & 2.15720370625423547470560897610422250689  \\ \hline
+			15 & 2.23020294245828385075785639634686399084  \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	\begin{table}[]
+		\begin{tabular}{|l|l|}
+			\hline
+			n  & radius of incircle                        \\ \hline
+			5  & 0.626869662906177814144463376211936401478 \\ \hline
+			6  & 0.881373587019543025232609324979792309028 \\ \hline
+			7  & 1.07040486155894418433137235164029245455  \\ \hline
+			8  & 1.22422622383903789500265495681793457016  \\ \hline
+			9  & 1.35504851879687183155393515348937116243  \\ \hline
+			10 & 1.46935174436818527325584431736164761679  \\ \hline
+			11 & 1.57108858003724067935632301765558416239  \\ \hline
+			12 & 1.66288589105862107565248503907940605953  \\ \hline
+			13 & 1.74659470452044937381132825499312321725  \\ \hline
+			14 & 1.82357635695908839705212496034624551058  \\ \hline
+			15 & 1.89486539086573102025718355160194478600  \\ \hline
+		\end{tabular}
+	\end{table}
+	
+\end{document}
