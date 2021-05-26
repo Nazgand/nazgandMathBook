@@ -48,7 +48,7 @@
 \author{Mark Andrew Gerads: \href{MailTo:MarkAndrewGerads.Nazgand@Gmail.Com}{MarkAndrewGerads.Nazgand@Gmail.Com}}
 
 \title{
-	Complex Derivative Root of Unity Exponential Sum Function
+	Complex Iterated Derivatives
 	
 	\href{https://github.com/Nazgand/nazgandMathBook}{https://github.com/Nazgand/nazgandMathBook}
 }
@@ -58,41 +58,8 @@
 	\maketitle
 	
 	\begin{abstract}
-		The goal of this paper is to analyze a class of functions which are equal to their own \(n\)th derivative. In particular, applying the derivative a complex number of times to these functions will be examined.
+		The goal of this paper is to analyze the iterated derivative extended to a complex number of iterations.
 	\end{abstract}
-	
-	\section{As a sum of exponential functions}
-	The reason these functions are named $\cidrues_n$ is because it is an acronym for Complex Iterated Derivative Root of Unity Exponential Sum function.
-	\begin{definition}
-		Where $n\in\mathbb{Z}^+,\Bqty{d,x}\subset\mathbb{C}$:
-		\begin{equation}
-		\label{cidrues Exponential sum form}
-		\cidrues_n\pqty{d,x}=
-		\frac{1}{n}\sum _{k=1}^n \exp\pqty{xe^{2ki\pi/n}+2dki\pi/n}
-		\end{equation}
-	\end{definition}
-	The functions are periodic:
-	\begin{equation}
-	\cidrues_n\pqty{d,x}=\cidrues_n\pqty{d+n,x}
-	\end{equation}
-	Consider the $m$th derivative with respect to $x$. It is apparent that, for $m\in\mathbb{Z}^{\geq 0},d\in\mathbb{C}$:
-	\begin{equation}
-	\pdiff{x}{m}\cidrues_n\pqty{d,x}=\cidrues_n\pqty{d+m,x}
-	\end{equation}
-	We can thus extend the definition of iterated derivative to an arbitrary complex number of iterations, $m\in\mathbb{C}$:
-	\begin{equation}
-	\pdiff{x}{m}\cidrues_n\pqty{0,x}=\cidrues_n\pqty{m,x}
-	\end{equation}
-	This is a bit simplistic though, as the iterated derivative, like an anti-derivative, has multiple values for $m\not\in\mathbb{Z}^{\geq 0}$.
-		
-	\section{Relation to earlier work}
-	Where \(n\in\mathbb{Z}^+\land x\in\mathbb{C}\):
-	\begin{equation}
-		\cidrues_n\pqty{0,x}=
-		\rues_n\pqty{x}=
-		\sum_{k=0}^{\infty}\frac{x^{nk}}{\pqty{nk}!}=
-		\frac{1}{n}\sum _{k=1}^n \exp\pqty{xe^{2ki\pi/n}}
-	\end{equation}
 	
 	\section{Complex Iterated Derivative For Functions, In General}
 	Let us have a function, $\mathbb{C}^2\to\mathbb{C}$, $\cidf\pqty{m,z}$ such that $\cidf\pqty{0,z}=f\pqty{z}$ and $\pdiff{z}{k}\cidf\pqty{m,z}=\cidf\pqty{m+k,z}$. Let $\Cid\pqty{f\pqty{z}}$ be the set of functions with the properties of $\cidf$.
@@ -143,7 +110,7 @@
 		\cidf\pqty{m+k,z}\in\Cid\pqty{\cidf\pqty{k,z}}
 	\end{equation}
 
-	\section{Complex Iterated Derivative For Other Specific Functions}
+	\section{Complex Iterated Derivative For Specific Functions}
 	First, the simplest solution to the complex iterated derivative of the exponential function:
 	\begin{equation}
 		e^z\in \Cid\pqty{e^z}
@@ -188,4 +155,34 @@
 			\int_{0}^{\infty}e^{-t}\ln\pqty{t}^m t^z dt\in\Cid\pqty{\Gamma\pqty{z+1}}
 		\end{equation}
 	\end{example}
+	
+	\section{Relation to earlier work}
+	Where \(n\in\mathbb{Z}^+\land z\in\mathbb{C}\):
+	\begin{equation}
+		\cidrues_n\pqty{0,z}=
+		\rues_n\pqty{z}=
+		\sum_{k=0}^{\infty}\frac{z^{nk}}{\pqty{nk}!}=
+		\frac{1}{n}\sum _{k=1}^n \exp\pqty{ze^{2ki\pi/n}}
+	\end{equation}
+	
+	The reason these functions are named $\cidrues_n$ is because it is an acronym for Complex Iterated Derivative Root of Unity Exponential Sum function.
+	\begin{definition}
+		Where $n\in\mathbb{Z}^+,\Bqty{m,z}\subset\mathbb{C}$:
+		\begin{equation}
+			\label{cidrues Exponential sum form}
+			\cidrues_n\pqty{m,z}=
+			\frac{1}{n}\sum _{k=1}^n \exp\pqty{ze^{2ki\pi/n}+2mki\pi/n}
+			\in\Cid\pqty{\rues_n\pqty{z}}
+		\end{equation}
+	\end{definition}
+	The functions are periodic:
+	\begin{equation}
+		\cidrues_n\pqty{m,x}=\cidrues_n\pqty{m+n,x}
+	\end{equation}
+
+	Thus there exists some functions $c_{n,k}\pqty{m}$ relatively constant to $z$ such that
+	\begin{equation}
+		\cidrues_n\pqty{m,z}=\sum_{k=0}^{n-1}c_{n,k}\pqty{m}\cidrues_n\pqty{k,z}
+	\end{equation}
+	
 \end{document}
